@@ -1,8 +1,12 @@
+//arrays menu using:
+//switch case and functions
+
 #include <iostream>
 using namespace std;
 
 class ArrayFunctions{
     public:
+        //insert array
         void insertArray(int array[], int &currentSize, int pos, int value){
             for(int i = currentSize; i > pos; i--){
                 array[i] = array[i - 1];
@@ -10,17 +14,16 @@ class ArrayFunctions{
             array[pos] = value;
             currentSize++;
         }
-
+        //delete an element of an array
         void deleteArray(int array[], int &currentSize, int pos){
             for(int i = pos; i < currentSize - 1; i++){
                 array[i] = array[i + 1];
             }
             currentSize--;
         }
-
+        //print an array
         void traverseArray(int array[], int currentSize){
-            /*cout << "Current size: " << currentSize << endl;
-            cout << "Array: "; */
+            
             if (currentSize == 0) {
             cout << "Array is empty." << endl;
             return;
@@ -33,6 +36,7 @@ class ArrayFunctions{
             cout << endl;
         }
 
+        //search an element of an array
         int searchArray(int array[], int currentSize, int value){
             for (int i = 0; i < currentSize; i++){
                 if(array[i] == value){
@@ -41,7 +45,7 @@ class ArrayFunctions{
             }
             return -1;
         }
-
+        //update an element of an array
         void updateArray(int array[], int pos, int value){
             array[pos] = value;
         }
@@ -55,8 +59,8 @@ int main(){
     do
     {
         cout << "\n----------------" << endl;
-        cout << "   ARRAYS MENU" << endl;
-        cout << "----------------" << endl;
+        cout << "   ARRAYS MENU   " << endl;
+        cout << "------------------" << endl;
         cout << "1. Insert " << endl;
         cout << "2. Delete " << endl;
         cout << "3. Traverse " << endl;
@@ -69,9 +73,9 @@ int main(){
         cout << endl;
 
         switch (choice){
-        int pos,value;
+        
         case 1:
-
+            int pos,value;
                 if (currentSize == 20){
                     cout << "Array is Full" << endl;
                 }
@@ -80,6 +84,11 @@ int main(){
             cin >> value;
             cout << "Enter position(index): ";
             cin >> pos;
+            
+            if (pos < 0 || pos > currentSize) {
+                    cout << "Invalid position!" << endl;
+                    break;
+                }
             
             a1.insertArray(array, currentSize, pos, value);
 
@@ -91,6 +100,12 @@ int main(){
             cout << endl;
             cout << "Enter posiiton to delete: ";
             cin >> pos;
+
+            if (pos < 0 || pos > currentSize) {
+                    cout << "Invalid position!" << endl;
+                    break;
+                }
+            
             a1.deleteArray(array, currentSize, pos);
 
             cout << "Element succesfully deleted!";
@@ -121,7 +136,10 @@ int main(){
         case 5:
             cout << "Enter index to update: ";
             cin >> pos;
-
+                    if (pos < 0 || pos >= currentSize) {
+                        cout << "Invalid position!" << endl;
+                        break;
+                    }
             cout << "Enter new value: ";
             cin >> value;
 
